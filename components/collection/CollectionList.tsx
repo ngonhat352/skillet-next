@@ -1,23 +1,11 @@
 import { Autocomplete } from "@mui/material"
-import { useEffect } from "react"
 import { Collection } from "../../model/collection"
-// import { useCollection } from "../../redux/useCollection"
 import { BoxOption } from "./BoxOption"
 import { SearchCollectionField } from "./SearchCollectionField"
 
 //@ts-ignore
 //TODO: add context 
-const CollectionList = ({setSelected, collections}) => {
-    // const {
-    //     isFetching,
-    //     fetchAllCollections,
-    //     collections,
-    // } = useCollection()
-
-    // useEffect(() => {
-    //     fetchAllCollections()
-    // }, [fetchAllCollections])
-    
+const CollectionList = ({setSelected, collections}) => {    
     return (
         <Autocomplete
             disablePortal

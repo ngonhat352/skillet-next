@@ -3,6 +3,7 @@ import React from "react"
 import { Collection } from "../../../model/collection" //TODO: add to path in tsconfig
 import CollectionList from "../../../components/collection/CollectionList"
 import { CollectionModal } from "../../../components/collection/CollectionModal"
+import {AssetContainer} from "../../../components/asset/AssetContainer"
 
 //@ts-ignore
 function CollectionContainer({ collections }) {
@@ -16,7 +17,7 @@ function CollectionContainer({ collections }) {
                 <>
                     <Button onClick={() => setOpenModal(true)}>View collection info</Button>
                     <CollectionModal openModal={openModal} setOpenModal={setOpenModal} selected={selected} />
-                    {/* <AssetContainer address={selected!!.address} /> */}
+                    <AssetContainer address={selected!!.address} />
                 </>
                 : <></>
             }
