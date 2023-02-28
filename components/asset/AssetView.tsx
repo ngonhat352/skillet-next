@@ -1,11 +1,13 @@
 import { Box, ButtonBase } from "@mui/material";
 import Image from 'next/image'
+import styles from '@/styles/AssetView.module.css'
+import { AssetContext } from "./AssetList"
+import { useContext } from "react";
 
-//@ts-ignore
-//TODO: add context 
-export const AssetView = ({ asset, index, setCurrentImage, setViewerIsOpen }) => {
-    const src = asset.image_url.includes("https") ? asset.image_url : '/error.webp'
+export const AssetView = ({ index }: { index: number }) => {
+    const { assets, setCurrentImage, setViewerIsOpen } = useContext(AssetContext)!!
 
+    const src = assets[index].image_url.includes("https") ? assets[index].image_url : '/error.webp'
     return (
         <Box
             component="li"
@@ -16,9 +18,10 @@ export const AssetView = ({ asset, index, setCurrentImage, setViewerIsOpen }) =>
             key={index}
         >
             <ButtonBase >
-                <div style={{ width: "25vw", aspectRatio: "1 / 1", position: "relative" }}>
+                <div className={styles.imageContainer} style={{ width: "25vw", aspectRatio: "1 / 1", position: "relative" }}>
                     <Image
-                        alt={asset.token_id}
+                        className={styles.image}
+                        alt={assets[index].token_id}
                         fill
                         style={{ objectFit: "contain", borderRadius: "4px" }}
                         src={src}
@@ -27,8 +30,10 @@ export const AssetView = ({ asset, index, setCurrentImage, setViewerIsOpen }) =>
                         placeholder="blur"
                         blurDataURL={'/placeholder.webp'}
                     />
+                    <div className={styles.middle} >
+                        <div className={styles.text}>{"Token ID: " + assets[index].token_id}</div>
+                    </div>
                 </div>
-
             </ButtonBase >
         </Box>
     )

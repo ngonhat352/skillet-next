@@ -16,8 +16,9 @@ export const BoxOption = ({ props, option }: BoxOptionProps) => {
                 loading="lazy"
                 width="20"
                 src={option.image_url}
-                alt=""
+                alt={option.name}
                 height="20"
+                quality={1}
             />
             {option.name} - {option.symbol}
         </Box>
