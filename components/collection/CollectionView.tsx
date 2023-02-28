@@ -1,15 +1,14 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material"
+import { Button, Card, CardContent, CardMedia, IconButton, Typography } from "@mui/material"
 import { Collection } from "../../model/collection"
-// import { BsDiscord, BsTwitter, BsInstagram, BsLink45Deg } from "react-icons/bs";
-// import ReactMarkdown from 'react-markdown'
+import { BsDiscord, BsTwitter, BsInstagram, BsLink45Deg } from "react-icons/bs";
+import ReactMarkdown from 'react-markdown'
 
 export const CollectionView = (collection: Collection) => {
   return (
     <Card
       sx={{
         display: "flex", flexDirection: "column", alignItems: "center",
-        position: "absolute", float: "left", left: "50%", top: "50%",
-        transform: "translate(-50%, -50%)"
+        width: "80vw", backgroundImage: "none", background: "none"
       }}
     >
       <CardMedia
@@ -17,29 +16,48 @@ export const CollectionView = (collection: Collection) => {
         loading="lazy"
         alt={collection.symbol}
         height="140"
-        sx={{ objectFit: "contain", maxWidth: "70vw" }}
-        image={collection.banner_image_url ?? collection.image_url}
+        sx={{ width: "auto", maxWidth: "30vw", borderRadius: "100px" }}
+        image={collection.image_url}
       />
       <CardContent sx={{
-        maxWidth: "70vw", alignItems: "center",
+        maxWidth: "60vw", alignItems: "center",
         display: "flex",
         flexDirection: "column"
       }}>
         <Typography gutterBottom variant="h5" component="div">
           {collection.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {/* <ReactMarkdown>{collection.description}</ReactMarkdown> */}
+        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <ReactMarkdown >{collection.description}</ReactMarkdown>
 
         </Typography>
         <div style={{ flexDirection: "row" }}>
-          {/* <BsLink45Deg />
-          <BsDiscord />
-          <BsTwitter />
-          <BsInstagram /> */}
+          {
+            collection.external_url &&
+            <IconButton onClick={() => { window.open(collection.external_url, '_blank')!!.focus() }}>
+              <BsLink45Deg />
+            </IconButton>
+          }
+          {collection.discord_url &&
+            <IconButton onClick={() => { window.open(collection.discord_url, '_blank')!!.focus() }}>
+              <BsDiscord />
+            </IconButton>
+          }
+          {
+            collection.twitter_username &&
+            <IconButton onClick={() => { window.open('https://twitter.com/' + collection.twitter_username, '_blank')!!.focus() }}>
+              <BsTwitter />
+            </IconButton>
+          }
+          {
+            collection.instagram_username &&
+            <IconButton onClick={() => { window.open('https://www.instagram.com/' + collection.discord_url, '_blank')!!.focus() }}>
+              <BsInstagram />
+            </IconButton>
+          }
         </div>
 
-        {/* TODO: add links + styling to the 4 icons above */}
+        {/* TODO: clean + reuse code */}
       </CardContent>
     </Card>
   )

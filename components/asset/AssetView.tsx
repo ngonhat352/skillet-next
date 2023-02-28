@@ -3,7 +3,9 @@ import Image from 'next/image'
 
 //@ts-ignore
 //TODO: add context 
-export const AssetView = ({asset, index, setCurrentImage,setViewerIsOpen}) => {
+export const AssetView = ({ asset, index, setCurrentImage, setViewerIsOpen }) => {
+    const src = asset.image_url.includes("https") ? asset.image_url : '/error.webp'
+
     return (
         <Box
             component="li"
@@ -14,13 +16,19 @@ export const AssetView = ({asset, index, setCurrentImage,setViewerIsOpen}) => {
             key={index}
         >
             <ButtonBase >
-                <Image
-                    alt={asset.token_id}
-                    width="100" //TODO: maybe squares like Instagram
-                    height="100"
-                    src={asset.image_url}
-                    priority
-                />
+                <div style={{ width: "25vw", aspectRatio: "1 / 1", position: "relative" }}>
+                    <Image
+                        alt={asset.token_id}
+                        fill
+                        style={{ objectFit: "contain", borderRadius: "4px" }}
+                        src={src}
+                        priority
+                        sizes="25vw"
+                        placeholder="blur"
+                        blurDataURL={'/placeholder.webp'}
+                    />
+                </div>
+
             </ButtonBase >
         </Box>
     )

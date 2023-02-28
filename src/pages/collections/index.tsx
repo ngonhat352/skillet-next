@@ -1,31 +1,36 @@
-import { Button } from "@mui/material"
 import React from "react"
 import { Collection } from "../../../model/collection" //TODO: add to path in tsconfig
 import CollectionList from "../../../components/collection/CollectionList"
-import { CollectionModal } from "../../../components/collection/CollectionModal"
-import {AssetContainer} from "../../../components/asset/AssetContainer"
+import { AssetContainer } from "../../../components/asset/AssetContainer"
+import { CollectionView } from "components/collection/CollectionView"
+import { NavBar } from "components/NavBar"
 
 //@ts-ignore
 function CollectionContainer({ collections }) {
     const [selected, setSelected] = React.useState<Collection | null>(null);
-    const [openModal, setOpenModal] = React.useState<boolean>(false);
 
     return (
         <>
-            <CollectionList setSelected={setSelected} collections={collections} />
-            {selected ?
-                <>
-                    <Button onClick={() => setOpenModal(true)}>View collection info</Button>
-                    <CollectionModal openModal={openModal} setOpenModal={setOpenModal} selected={selected} />
-                    <AssetContainer address={selected!!.address} />
-                </>
-                : <></>
-            }
+            <NavBar />
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+            }}>
+                <CollectionList setSelected={setSelected} collections={collections} />
+                {selected ?
+                    <>
+                        <CollectionView {...selected!!} />
+                        <AssetContainer address={selected!!.address} />
+                    </>
+                    : <></>
+                }
+            </div>
         </>
     )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const url = `https://skillet-interview-express-rng3tbs6qq-wl.a.run.app/getcollections`
     const res = await fetch(url, {
         method: "get",

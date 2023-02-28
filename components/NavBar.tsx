@@ -1,26 +1,25 @@
-import { AppBar, Stack, Toolbar, Button } from '@mui/material';
-import Image from 'next/image'
+import { AppBar, Stack, Toolbar, Button, Box, IconButton } from '@mui/material';
 import Link from 'next/link';
 
 export function NavBar() {
     return (
-        <AppBar position='static'>
+        <AppBar position='static' sx={{backgroundImage: "none", background: "none"}}>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
-                <div style={{ width: '100%', height: '50px', maxWidth: '10vw', position: 'relative' }}>
-                    <Image
-                        alt='Skillet Logo'
-                        fill
-                        style={{ 'objectFit': 'contain' }}
+                <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
+                    <Box
+                        component="img"
+                        sx={{ height: "3vh" }}
+                        alt="Skillet logo"
                         src={'/skillet.png'}
-                        priority
+                        onClick={() => {window.open('https://skillet.ai/', '_blank')!!.focus()}}
                     />
-                </div>
+                </IconButton>
                 <Stack direction='row' spacing={2}>
                     <Button color='inherit' sx={{ textTransform: 'none' }}>
-                        <Link href='/wallet'>Wallet</Link>
+                        <Link href='/wallet' shallow>Wallet</Link>
                     </Button>
                     <Button color='inherit' sx={{ textTransform: 'none' }}>
-                        <Link href='/collections'>Collections</Link>
+                        <Link href='/collections' shallow>Collections</Link>
                     </Button>
                 </Stack>
             </Toolbar>

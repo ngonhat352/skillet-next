@@ -1,6 +1,5 @@
 import { Box } from "@mui/material"
 import { useEffect, useState } from "react"
-// import { useAsset } from "../../redux/useAsset"
 import { AssetList } from "./AssetList";
 
 export const AssetContainer = (props: any) => {
@@ -17,7 +16,7 @@ export const AssetContainer = (props: any) => {
         <>
             {assets.length <= 0
                 ? <><Box></Box></>
-                : <Box sx={{ height: 450, overflowY: "scroll" }}>
+                : <Box sx={{ height: "600px" }}>
                     <AssetList assets={assets} />
                 </Box>
             }
