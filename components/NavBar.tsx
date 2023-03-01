@@ -1,4 +1,5 @@
 import { AppBar, Stack, Toolbar, Button, Box, IconButton } from '@mui/material';
+import { StaticImage } from 'enums/StaticImage';
 
 export function NavBar() {
     return (
@@ -11,7 +12,7 @@ export function NavBar() {
                         component="img"
                         sx={{ height: "3vh" }}
                         alt="Skillet logo"
-                        src={'/skillet.png'}
+                        src={StaticImage.SKILLET}
                     />
                 </IconButton>
                 <Stack direction='row' spacing={2}>

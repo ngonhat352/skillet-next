@@ -2,11 +2,13 @@ import Image from 'next/image'
 import { useWeb3React } from "@web3-react/core"
 import { Typography } from "@mui/material"
 import useBalance from 'hooks/useBalance'
+import { StaticImage } from 'enums/StaticImage'
+import { Address } from 'enums/Address'
 
 export default function WalletBalance() {
     const { account, library } = useWeb3React()
-    const wethBalance = useBalance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', library, account) //TODO: enum later
-    const ethBalance = useBalance('ETH', library, account)
+    const wethBalance = useBalance(Address.WETH, library, account)
+    const ethBalance = useBalance(Address.ETH, library, account)
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', width: "40vw" }}> 
@@ -15,7 +17,7 @@ export default function WalletBalance() {
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly" }}>
                     <Image
                         alt="ETH logo"
-                        src="/eth.png"
+                        src={StaticImage.ETH}
                         width="15"
                         height="20"
                         style={{marginRight: "1vw"}}
@@ -33,7 +35,7 @@ export default function WalletBalance() {
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly" }}>
                     <Image
                         alt="WETH logo"
-                        src="/weth.png"
+                        src={StaticImage.WETH}
                         width="20"
                         height="20"
                         style={{marginRight: "1vw"}}

@@ -1,14 +1,16 @@
 import { Box, ButtonBase } from "@mui/material";
 import Image from 'next/image'
 import styles from '@/styles/AssetView.module.css'
-import { AssetContext } from "./AssetList"
 import { useContext } from "react";
+import { AssetContext } from "context/AssetContext";
+import { StaticImage } from "enums/StaticImage";
 
 export const AssetView = ({ index }: { index: number }) => {
     const { assets, setCurrentImage, setViewerIsOpen } = useContext(AssetContext)!!
+    const errored = !assets[index].image_url.includes("https")
+    const src = errored ? StaticImage.ERROR : assets[index].image_url
+    const hoverText = errored ? "Broken img link :(" : "Token ID: " + assets[index].token_id
 
-    const src = assets[index].image_url.includes("https") ? assets[index].image_url : '/error.webp'
-    //TODO: if src == error then cant be clicked, hover will show error message
     return (
         <Box
             onClick={() => {
@@ -28,10 +30,10 @@ export const AssetView = ({ index }: { index: number }) => {
                         priority
                         sizes="25vw"
                         placeholder="blur"
-                        blurDataURL={'/spinner.gif'}
+                        blurDataURL={StaticImage.SPINNER}
                     />
                     <div className={styles.middle} >
-                        <div className={styles.text}>{"Token ID: " + assets[index].token_id}</div>
+                        <div className={styles.text}>{hoverText}</div>
                     </div>
                 </div>
             </ButtonBase >

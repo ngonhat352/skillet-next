@@ -1,27 +1,16 @@
 import { ImageList, ImageListItem } from "@mui/material"
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { Asset } from "../../model/asset";
+import { CollectionContext } from "context/CollectionContext"
+import { AssetContext } from "context/AssetContext";
+import React, { useContext, useState } from "react";
+import { Asset } from "model/asset";
 import { AssetView } from "./AssetView"
 import { ZoomModal } from "./ZoomModal"
 
-type AssetContext = {
-    assets: Asset[],
-    address: string,
-    currentImage: number,
-    setCurrentImage: Dispatch<SetStateAction<number>>,
-    viewerIsOpen: boolean,
-    setViewerIsOpen: Dispatch<SetStateAction<boolean>>
-}
-export const AssetContext = React.createContext<AssetContext | null>(null);
-
-type AssetListProps = {
-    assets: Asset[],
-    address: string
-}
-
-export const AssetList = ({ assets, address }: AssetListProps) => {
+export const AssetList = ({ assets }: { assets: Asset[] }) => {
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
+    const { selected } = useContext(CollectionContext)!!
+    const address = selected!!.address
 
     return (
         <AssetContext.Provider value={{

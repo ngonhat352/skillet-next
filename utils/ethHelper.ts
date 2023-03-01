@@ -1,4 +1,5 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
+import { Address } from 'enums/Address';
 import { ethers } from 'ethers';
 import ERC20ABI from './erc20.abi.json'
 import ERC721ABI from './erc721.abi.json'
@@ -17,7 +18,7 @@ const getContractFromABI = (tokenAddress: string, web3: any, abi: any[]) => {
 
 export async function getBalance(tokenAddress: string, library: any, account: string) {
   try {
-    if (tokenAddress === "ETH") {
+    if (tokenAddress === Address.ETH) {
       const balance = await library.eth
         .getBalance(account)
       return ethers.formatEther(balance)

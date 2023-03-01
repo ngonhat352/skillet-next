@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
-import { Collection } from "../../model/collection";
+import { Collection } from "model/collection";
 
 type BoxOptionProps = {
     props: any

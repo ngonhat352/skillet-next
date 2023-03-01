@@ -5,12 +5,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import Aos from "aos";
-
 import "aos/dist/aos.css";
 import { useEffect } from 'react';
+
 function getLibrary(provider: any) {
   return new Web3(provider)
 }
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',

@@ -1,17 +1,16 @@
 import { Button, Typography } from "@mui/material"
 import { useWeb3React } from "@web3-react/core"
 import { useEffect } from "react"
-import { injectedConnector } from "../../../utils/ethHelper"
+import { injectedConnector } from "utils/ethHelper"
 import useBalance from "hooks/useBalance";
 import Image from 'next/image'
 import WalletBalance from "components/wallet/WalletBalance";
+import { StaticImage } from "enums/StaticImage";
 
-export default function Wallet() {
+export default function WalletContainer() {
   const { active, account, library, activate, deactivate } = useWeb3React()
-  const wethBalance = useBalance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', library, account) //TODO: enum later
-  const ethBalance = useBalance('ETH', library, account)
 
-  async function connect() {
+  async function connect() { //TODO: move to ethHelper
     try {
       await activate(injectedConnector)
       localStorage.setItem('isWalletConnected', "true")
@@ -53,7 +52,7 @@ export default function Wallet() {
             style={{ objectFit: "cover" }}
             priority
             sizes="100%"
-            src={'/metamaskLogo.gif'}
+            src={StaticImage.METAMASK}
           />
         </div>
 

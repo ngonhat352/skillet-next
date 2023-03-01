@@ -1,11 +1,13 @@
 import { Autocomplete } from "@mui/material"
-import { Collection } from "../../model/collection"
+import { useContext } from "react"
+import { Collection } from "model/collection"
 import { BoxOption } from "./BoxOption"
+import { CollectionContext } from "context/CollectionContext"
 import { SearchCollectionField } from "./SearchCollectionField"
 
-//@ts-ignore
-//TODO: add context 
-const CollectionList = ({setSelected, collections}) => {    
+const CollectionList = () => {  
+    const { setSelected, collections } = useContext(CollectionContext)!!
+  
     return (
         <Autocomplete
             disablePortal
@@ -16,7 +18,7 @@ const CollectionList = ({setSelected, collections}) => {
             renderOption={(props, option) => (
                 <BoxOption props={props} option={option} key={option.symbol} />
             )}
-            onChange={(event: any, newValue: Collection | null) => setSelected(newValue)}
+            onChange={(_, newValue: Collection | null) => setSelected(newValue)}
             renderInput={(params) => <SearchCollectionField {...params} />}
         />
     )
