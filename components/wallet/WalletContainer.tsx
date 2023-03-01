@@ -2,7 +2,6 @@ import { Button, Typography } from "@mui/material"
 import { useWeb3React } from "@web3-react/core"
 import { useEffect } from "react"
 import { injectedConnector } from "utils/ethHelper"
-import useBalance from "hooks/useBalance";
 import Image from 'next/image'
 import WalletBalance from "components/wallet/WalletBalance";
 import { StaticImage } from "enums/StaticImage";
@@ -44,7 +43,7 @@ export default function WalletContainer() {
 
   return (
     <>
-      <div data-aos="fade-down" style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", justifyContent: "center" }}>
+      <div data-aos="fade-down" style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", justifyContent: "center", backgroundColor: "black" }}>
         <div style={{ height: "50vh", aspectRatio: "1 / 1", position: "relative" }}>
           <Image
             alt={"MetaMask"}

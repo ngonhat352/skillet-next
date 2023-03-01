@@ -10,7 +10,7 @@ function CollectionContainer({ collections }: { collections: Collection[] }) {
     const [selected, setSelected] = React.useState<Collection | null>(null);
     return (
         <CollectionContext.Provider value={{ collections, selected, setSelected }}>
-            <div style={{ display: 'flex', flexDirection: 'column', minHeight: "90vh" }}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: "90vh", backgroundColor: "black" }}>
                 <Divider sx={{ width: '80vw', alignSelf: 'center' }}>NFT Collections</Divider>
                 <div data-aos="fade-up" style={{
                     display: "flex",

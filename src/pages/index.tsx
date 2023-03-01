@@ -9,11 +9,11 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ collections }: { collections: Collection[] }) {
   return (
-    <>
+    <div style={{backgroundColor: 'black'}}>
       <NavBar />
       <WalletContainer />
       <CollectionContainer collections={collections} />
-    </>
+    </div>
   )
 }
 
