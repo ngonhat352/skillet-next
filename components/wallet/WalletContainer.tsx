@@ -61,9 +61,8 @@ export default function WalletContainer() {
             <Typography>
               Welcome,
             </Typography>
-            <Typography gutterBottom variant="h5">
+            <Typography gutterBottom variant="h5" sx={{fontSize: '3vw'}}>
               <b>{account}</b>
-              {/* TODO: media smaller font size on smaller screens */}
             </Typography>
             <WalletBalance />
             <Button variant="outlined" color='inherit' sx={{ marginTop: '1vh', textTransform: 'none', backgroundColor: "darkred", "&:hover": { opacity: "0.8", backgroundColor: "darkred" } }}

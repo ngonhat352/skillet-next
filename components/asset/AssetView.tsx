@@ -1,7 +1,7 @@
-import { Box, ButtonBase } from "@mui/material";
+import { Box, ButtonBase, CircularProgress } from "@mui/material";
 import Image from 'next/image'
 import styles from '@/styles/AssetView.module.css'
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AssetContext } from "context/AssetContext";
 import { StaticImage } from "enums/StaticImage";
 
@@ -10,7 +10,10 @@ export const AssetView = ({ index }: { index: number }) => {
     const errored = !assets[index].image_url.includes("https")
     const src = errored ? StaticImage.ERROR : assets[index].image_url
     const hoverText = errored ? "Broken img link :(" : "Token ID: " + assets[index].token_id
-
+    const [isLoading, setLoading] = useState(true)
+    useEffect(() => {
+        setLoading(true)
+    }, [index, assets, src]);
     return (
         <Box
             onClick={() => {
@@ -19,6 +22,12 @@ export const AssetView = ({ index }: { index: number }) => {
             }}
             key={index}
         >
+            {
+                isLoading &&
+                <div style={{ width: "25vw", aspectRatio: "1 / 1", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <CircularProgress />
+                </div>
+            }
             <ButtonBase >
                 <div className={styles.imageContainer} style={{ width: "25vw", aspectRatio: "1 / 1", position: "relative" }}>
                     <Image
@@ -29,8 +38,7 @@ export const AssetView = ({ index }: { index: number }) => {
                         src={src}
                         priority
                         sizes="25vw"
-                        placeholder="blur"
-                        blurDataURL={StaticImage.SPINNER}
+                        onLoadingComplete={() => {console.log(`${assets[index].token_id}: ${isLoading}`);setLoading(false)}}
                     />
                     <div className={styles.middle} >
                         <div className={styles.text}>{hoverText}</div>

@@ -21,7 +21,7 @@ export const AssetContainer = () => {
         <>
             {assets.length <= 0
                 ? <><Box></Box></>
-                : <Box sx={{ height: "60vh" }}>
+                : <Box>
                     <AssetList assets={assets} />
                 </Box>
             }

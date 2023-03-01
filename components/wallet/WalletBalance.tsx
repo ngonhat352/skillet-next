@@ -11,8 +11,7 @@ export default function WalletBalance() {
     const ethBalance = useBalance(Address.ETH, library, account)
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', width: "40vw" }}> 
-        {/* TODO: make width vw above different for different screen sizes (20vw for bigger screens) */}
+        <Typography component="div" sx={{ display: 'flex', flexDirection: 'row', width: {'xs': "40vw", 'md': '30vw','lg': '20vw' }, }}> 
             <div style={{ flex: "1 1 0", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly" }}>
                     <Image
@@ -49,7 +48,6 @@ export default function WalletBalance() {
                 </Typography>
 
             </div>
-
-        </div>
+        </Typography>
     )
 }
