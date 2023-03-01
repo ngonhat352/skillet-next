@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material"
 import { useWeb3React } from "@web3-react/core"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { injectedConnector } from "../../../utils/ethHelper"
 import useBalance from "hooks/useBalance";
 import Image from 'next/image'
-import { NavBar } from "components/NavBar";
+import WalletBalance from "components/wallet/WalletBalance";
 
 export default function Wallet() {
   const { active, account, library, activate, deactivate } = useWeb3React()
@@ -45,15 +45,14 @@ export default function Wallet() {
 
   return (
     <>
-      <NavBar />
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div data-aos="fade-down" style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", justifyContent: "center" }}>
         <div style={{ height: "50vh", aspectRatio: "1 / 1", position: "relative" }}>
           <Image
             alt={"MetaMask"}
             fill
             style={{ objectFit: "cover" }}
             priority
-            sizes="100vw"
+            sizes="100%"
             src={'/metamaskLogo.gif'}
           />
         </div>
@@ -66,17 +65,21 @@ export default function Wallet() {
             </Typography>
             <Typography gutterBottom variant="h5">
               <b>{account}</b>
+              {/* TODO: media smaller font size on smaller screens */}
             </Typography>
-            <Typography>
-              ETH Balance: {ethBalance} -
-              WETH Balance: {wethBalance}
-            </Typography>
-            <Button onClick={disconnect}>Disconnect</Button>
+            <WalletBalance />
+            <Button variant="outlined" color='inherit' sx={{ marginTop: '1vh', textTransform: 'none', backgroundColor: "darkred", "&:hover": { opacity: "0.8", backgroundColor: "darkred" } }}
+              onClick={disconnect} >
+              <b>Disconnect</b>
+            </Button>
           </>
           :
           <>
             <Typography>Not connected</Typography>
-            <Button onClick={connect}>Connect to MetaMask</Button>
+            <Button variant="outlined" color='inherit' sx={{ textTransform: 'none', backgroundColor: "forestgreen", "&:hover": { opacity: "0.8", backgroundColor: "forestgreen" } }}
+              onClick={connect}>
+              <b>Connect to MetaMask</b>
+            </Button>
           </>
         }
       </div>

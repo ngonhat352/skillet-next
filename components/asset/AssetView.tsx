@@ -8,9 +8,9 @@ export const AssetView = ({ index }: { index: number }) => {
     const { assets, setCurrentImage, setViewerIsOpen } = useContext(AssetContext)!!
 
     const src = assets[index].image_url.includes("https") ? assets[index].image_url : '/error.webp'
+    //TODO: if src == error then cant be clicked, hover will show error message
     return (
         <Box
-            component="li"
             onClick={() => {
                 setCurrentImage(index);
                 setViewerIsOpen(true)
@@ -28,7 +28,7 @@ export const AssetView = ({ index }: { index: number }) => {
                         priority
                         sizes="25vw"
                         placeholder="blur"
-                        blurDataURL={'/placeholder.webp'}
+                        blurDataURL={'/spinner.gif'}
                     />
                     <div className={styles.middle} >
                         <div className={styles.text}>{"Token ID: " + assets[index].token_id}</div>

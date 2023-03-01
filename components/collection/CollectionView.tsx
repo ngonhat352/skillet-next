@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 
 export const CollectionView = (collection: Collection) => {
   return (
+    
     <Card
       sx={{
         display: "flex", flexDirection: "column", alignItems: "center",
@@ -27,7 +28,7 @@ export const CollectionView = (collection: Collection) => {
         <Typography gutterBottom variant="h5" component="div">
           {collection.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography component="div" variant="body2" color="text.secondary" sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <ReactMarkdown >{collection.description}</ReactMarkdown>
 
         </Typography>

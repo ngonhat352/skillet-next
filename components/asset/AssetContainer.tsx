@@ -17,7 +17,7 @@ export const AssetContainer = ({ address }: { address: string }) => {
         <>
             {assets.length <= 0
                 ? <><Box></Box></>
-                : <Box sx={{ height: "600px" }}>
+                : <Box sx={{ height: "60vh" }}>
                     <AssetList assets={assets} address={address} />
                 </Box>
             }
