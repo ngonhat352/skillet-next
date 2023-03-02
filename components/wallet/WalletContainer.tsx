@@ -65,16 +65,16 @@ export default function WalletContainer() {
               <b>{account}</b>
             </Typography>
             <WalletBalance />
-            <Button variant="outlined" color='inherit'
-              className={styles.disconnectButton} onClick={disconnect} >
+            <Button variant="outlined" color='inherit' onClick={disconnect}
+              sx={{ marginTop: '1vh', textTransform: 'none', backgroundColor: "darkred", "&:hover": { opacity: "0.8", backgroundColor: "darkred" } }} >
               <b>Disconnect</b>
             </Button>
           </>
           :
           <>
             <Typography>Not connected</Typography>
-            <Button variant="outlined" color='inherit'
-              className={styles.connectButton} onClick={connect}>
+            <Button variant="outlined" color='inherit' onClick={connect}
+              sx={{ textTransform: 'none', backgroundColor: "forestgreen", "&:hover": { opacity: "0.8", backgroundColor: "forestgreen" } }}>
               <b>Connect to MetaMask</b>
             </Button>
           </>
