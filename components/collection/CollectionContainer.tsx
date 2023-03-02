@@ -1,23 +1,19 @@
-import React, { Dispatch, SetStateAction } from "react"
+import React from "react"
 import { Collection } from "model/collection"
 import CollectionList from "components/collection/CollectionList"
 import { AssetContainer } from "components/asset/AssetContainer"
 import { CollectionView } from "components/collection/CollectionView"
 import { Divider } from "@mui/material"
 import { CollectionContext } from "context/CollectionContext"
+import styles from '@/styles/CollectionContainer.module.css'
 
 function CollectionContainer({ collections }: { collections: Collection[] }) {
     const [selected, setSelected] = React.useState<Collection | null>(null);
     return (
         <CollectionContext.Provider value={{ collections, selected, setSelected }}>
-            <div style={{ display: 'flex', flexDirection: 'column', minHeight: "90vh", backgroundColor: "black" }}>
-                <Divider sx={{ width: '80vw', alignSelf: 'center' }}>NFT Collections</Divider>
-                <div data-aos="fade-up" style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    marginTop: "5vh", marginBottom: '5vh'
-                }}>
+            <div className={styles.collectionPage}>
+                <Divider className={styles.divider}>NFT Collections</Divider>
+                <div data-aos="fade-up" className={styles.collectionContainer}>
                     <CollectionList />
 
                     {selected ?

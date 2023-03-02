@@ -30,7 +30,7 @@ export async function getBalance(tokenAddress: string, library: any, account: st
       return ethers.formatEther(balance)
     }
   } catch (error) {
-    return '0'
+    return 'Unavailable'
   }
 }
 
@@ -38,11 +38,10 @@ export async function getOwnerOfToken(tokenid: string, address: string, provider
   try {
     const contract = getContractFromABI(address, provider, ERC721ABI)
     const ownerAddress = await contract.methods.ownerOf(tokenid).call();
-    console.log(ownerAddress)
     return ownerAddress;
   }
   catch (error) {
     console.log(error)
-    return '0'
+    return 'Unavailable'
   }
 };

@@ -5,6 +5,7 @@ import { injectedConnector } from "utils/ethHelper"
 import Image from 'next/image'
 import WalletBalance from "components/wallet/WalletBalance";
 import { StaticImage } from "enums/StaticImage";
+import styles from '@/styles/WalletContainer.module.css'
 
 export default function WalletContainer() {
   const { active, account, library, activate, deactivate } = useWeb3React()
@@ -43,8 +44,8 @@ export default function WalletContainer() {
 
   return (
     <>
-      <div data-aos="fade-down" style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", justifyContent: "center", backgroundColor: "black" }}>
-        <div style={{ height: "50vh", aspectRatio: "1 / 1", position: "relative" }}>
+      <div data-aos="fade-down" className={styles.walletPage}>
+        <div className={styles.metamaskLogo}>
           <Image
             alt={"MetaMask"}
             fill
@@ -55,26 +56,25 @@ export default function WalletContainer() {
           />
         </div>
 
-
         {active ?
           <>
             <Typography>
               Welcome,
             </Typography>
-            <Typography gutterBottom variant="h5" sx={{fontSize: '3vw'}}>
+            <Typography gutterBottom variant="h5" sx={{ fontSize: '3vw' }}>
               <b>{account}</b>
             </Typography>
             <WalletBalance />
-            <Button variant="outlined" color='inherit' sx={{ marginTop: '1vh', textTransform: 'none', backgroundColor: "darkred", "&:hover": { opacity: "0.8", backgroundColor: "darkred" } }}
-              onClick={disconnect} >
+            <Button variant="outlined" color='inherit'
+              className={styles.disconnectButton} onClick={disconnect} >
               <b>Disconnect</b>
             </Button>
           </>
           :
           <>
             <Typography>Not connected</Typography>
-            <Button variant="outlined" color='inherit' sx={{ textTransform: 'none', backgroundColor: "forestgreen", "&:hover": { opacity: "0.8", backgroundColor: "forestgreen" } }}
-              onClick={connect}>
+            <Button variant="outlined" color='inherit'
+              className={styles.connectButton} onClick={connect}>
               <b>Connect to MetaMask</b>
             </Button>
           </>

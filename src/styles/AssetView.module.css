@@ -9,10 +9,22 @@
     text-align: center;
 }
 
+.imageContainer {
+    width: 25vw;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
 .image {
     transition: .5s ease;
     backface-visibility: hidden;
+    object-fit: contain; 
+    border-radius: 4px
 }
+
 
 .imageContainer:hover .image {
     opacity: 0.3;

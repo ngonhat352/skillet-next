@@ -11,7 +11,6 @@ const CollectionList = () => {
     return (
         <Autocomplete
             disablePortal
-            loading={collections.length > 0}
             id="collection-search-box"
             options={collections}
             getOptionLabel={(option) => option.name}

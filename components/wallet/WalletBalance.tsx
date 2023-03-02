@@ -4,6 +4,7 @@ import { Typography } from "@mui/material"
 import useBalance from 'hooks/useBalance'
 import { StaticImage } from 'enums/StaticImage'
 import { Address } from 'enums/Address'
+import styles from '@/styles/WalletBalance.module.css'
 
 export default function WalletBalance() {
     const { account, library } = useWeb3React()
@@ -12,8 +13,8 @@ export default function WalletBalance() {
 
     return (
         <Typography component="div" sx={{ display: 'flex', flexDirection: 'row', width: {'xs': "40vw", 'md': '30vw','lg': '20vw' }, }}> 
-            <div style={{ flex: "1 1 0", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly" }}>
+            <div className={styles.columnDiv}>
+                <div className={styles.rowDiv}>
                     <Image
                         alt="ETH logo"
                         src={StaticImage.ETH}
@@ -30,8 +31,8 @@ export default function WalletBalance() {
                 </Typography>
 
             </div>
-            <div style={{ flex: "1 1 0", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly" }}>
+            <div className={styles.columnDiv}>
+                <div className={styles.rowDiv}>
                     <Image
                         alt="WETH logo"
                         src={StaticImage.WETH}

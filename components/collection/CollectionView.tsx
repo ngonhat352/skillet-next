@@ -3,37 +3,29 @@ import { BsDiscord, BsTwitter, BsInstagram, BsLink45Deg } from "react-icons/bs";
 import ReactMarkdown from 'react-markdown'
 import { useContext } from "react";
 import { CollectionContext } from "context/CollectionContext"
+import styles from '@/styles/CollectionView.module.css'
 
 export const CollectionView = () => {
   const { selected } = useContext(CollectionContext)!!
 
   return (
-    <Card
-      sx={{
-        display: "flex", flexDirection: "column", alignItems: "center",
-        width: "80vw", backgroundImage: "none", background: "none"
-      }}
-    >
+    <Card className={styles.card}>
       <CardMedia
         component="img"
         loading="lazy"
         alt={selected!!.symbol}
         height="140"
-        sx={{ width: "auto", maxWidth: "30vw", borderRadius: "100px" }}
+        className={styles.cardMedia}
         image={selected!!.image_url}
       />
-      <CardContent sx={{
-        maxWidth: "60vw", alignItems: "center",
-        display: "flex",
-        flexDirection: "column"
-      }}>
+      <CardContent className={styles.cardContent}>
         <Typography gutterBottom variant="h5" component="div">
           {selected!!.name}
         </Typography>
-        <Typography component="div" variant="body2" color="text.secondary" sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography component="div" variant="body2" color="text.secondary" className={styles.cardDescription}>
           <ReactMarkdown >{selected!!.description}</ReactMarkdown>
-
         </Typography>
+        
         <div style={{ flexDirection: "row" }}>
           {
             selected!!.external_url &&

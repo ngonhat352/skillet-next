@@ -1,0 +1,37 @@
+.walletPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    background-color: black
+}
+
+.metamaskLogo {
+    height: 50vh;
+    aspect-ratio: 1 / 1;
+    position: relative
+}
+
+.disconnectButton {
+    margin-top: 1vh;
+    text-transform: none;
+    background-color: darkred;
+     /* "&:hover": { opacity: "0.8", backgroundColor: "darkred" } */
+}
+
+.disconnectButton:hover {
+    opacity: 0.8;
+    background-color: darkred
+}
+
+.connectButton { 
+    text-transform: none;
+     background-color: forestgreen;
+      /* "&:hover": { opacity: "0.8", backgroundColor: "forestgreen" }  */
+}
+
+.connectButton:hover {
+    opacity: 0.8;
+    background-color: forestgreen
+}
